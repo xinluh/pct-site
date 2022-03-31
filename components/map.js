@@ -2,10 +2,12 @@ import React, { Component } from "react";
 import GoogleMapReact from "google-map-react";
 import { useGarminLogData } from "../lib/data";
 import ReactTooltip from "react-tooltip";
+import { format } from "date-fns";
 
 const Point = ({ text }) => (
   <div>
     <div className="marker" />
+    <div className="text">{text}</div>
     <style jsx>{`
       .marker {
         position: absolute;
@@ -13,7 +15,7 @@ const Point = ({ text }) => (
         left: 50%;
         width: 18px;
         height: 18px;
-        background-color: #000;
+        background-color: #008aff;
         border: 2px solid #fff;
         border-radius: 100%;
         user-select: none;
@@ -22,6 +24,12 @@ const Point = ({ text }) => (
         &:hover {
           z-index: 1;
         }
+      }
+
+      .text {
+        width: 40px;
+        margin-left: 10px;
+        background: #ffffffad;
       }
     `}</style>
   </div>
@@ -34,6 +42,7 @@ function handleApiLoaded(map, maps) {
 
 export function GoogleMap({ data }) {
   console.log(data);
+  data = data.filter((d) => d.lat && d.lng);
   const center = data[data.length - 1];
   const defaultZoom = 12;
 
@@ -46,9 +55,16 @@ export function GoogleMap({ data }) {
         yesIWantToUseGoogleMapApiInternals
         onGoogleApiLoaded={({ map, maps }) => handleApiLoaded(map, maps)}
       >
-        {data.map((d, idx) => (
-          <Point key={idx} lat={d.lat} lng={d.lng} text={d.message} />
-        ))}
+        {data
+          .filter((d) => d.lat && d.lng)
+          .map((d, idx) => (
+            <Point
+              key={idx}
+              lat={d.lat}
+              lng={d.lng}
+              text={format(d.timestamp, "MMM d")}
+            />
+          ))}
       </GoogleMapReact>
     </div>
   );
