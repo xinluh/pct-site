@@ -40,7 +40,7 @@ export default function Home() {
             <GoogleMap data={data} />
 
             <div className="update-container">
-              {differenceInHours(new Date(), lastDataPoint.timestamp) > 2 && (
+              {differenceInHours(new Date(), lastDataPoint.timestamp) > 48 && (
                 <div className="update-notice">
                   <div>
                     Don't see a recent update here? <b>Don't worry!</b> Mostly
@@ -89,7 +89,7 @@ export default function Home() {
       <footer>
         <div>
           © Xinlu Huang {new Date().getFullYear()} [
-          <a href="https://github.com/xinluh/pct">Github</a>]
+          <a href="https://github.com/xinluh/pct-site">Github Repo</a>]
         </div>
         <div className="secondary">
           If you are one of my developer friends - pull request welcome to make
