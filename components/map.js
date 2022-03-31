@@ -4,18 +4,20 @@ import { useGarminLogData } from "../lib/data";
 import ReactTooltip from "react-tooltip";
 import { format } from "date-fns";
 
-const Point = ({ text }) => (
+const Point = ({ text, isOvernight }) => (
   <div>
     <div className="marker" />
-    <div className="text">{text}</div>
+    <div className="text">
+      {text} {isOvernight && "💤"}
+    </div>
     <style jsx>{`
       .marker {
         position: absolute;
         top: 50%;
         left: 50%;
-        width: 18px;
-        height: 18px;
-        background-color: #008aff;
+        width: ${isOvernight ? "18px" : "12px"};
+        height: ${isOvernight ? "18px" : "12px"};
+        background-color: ${isOvernight ? "#c000ff" : "#008aff"};
         border: 2px solid #fff;
         border-radius: 100%;
         user-select: none;
@@ -27,7 +29,7 @@ const Point = ({ text }) => (
       }
 
       .text {
-        width: 40px;
+        width: 50px;
         margin-left: 10px;
         background: #ffffffad;
       }
@@ -67,6 +69,7 @@ export function GoogleMap({ data }) {
               lat={d.lat}
               lng={d.lng}
               text={format(d.timestamp, "MMM d")}
+              isOvernight={d.message?.includes("for the night")}
             />
           ))}
       </GoogleMapReact>
