@@ -8,6 +8,7 @@ const UPDATE_PAGE_SIZE = 10;
 export default function Home() {
   const { data, loading, error } = useGarminLogData();
   const [numUpdateShown, setNumUpdateShown] = useState(UPDATE_PAGE_SIZE);
+  const [showWhatsThis, setShowWhatsThis] = useState(false);
 
   const lastDataPoint = data[data.length - 1];
 
@@ -76,10 +77,35 @@ export default function Home() {
                   onClick={() =>
                     setNumUpdateShown(numUpdateShown + UPDATE_PAGE_SIZE)
                   }
-                  className="secondary"
+                  className="secondary link"
                 >
                   <u>show more...</u>
                 </a>
+              )}
+
+              <div
+                className="secondary link"
+                style={{ marginTop: "30px" }}
+                onClick={() => setShowWhatsThis(true)}
+              >
+                <i>What are these updates?</i> {!showWhatsThis && "[expand]"}
+              </div>
+              {showWhatsThis && (
+                <>
+                  <div>
+                    I have a satelite messenger (Garmin InReach Mini 2) which I
+                    use mainly for SOS purpose, but also occasionally drop some
+                    location breadcrumb for logging purpose. I get a message on
+                    my email which is then parsed by Google App Script in to a
+                    Google Sheet; this page just shows the information from
+                    sheet in a nice way.
+                  </div>
+
+                  <div>
+                    How to reach me on the trail? Just send me a text! I'll
+                    probably get it in a few days :)
+                  </div>
+                </>
               )}
             </div>
           </>
@@ -92,9 +118,17 @@ export default function Home() {
           <a href="https://github.com/xinluh/pct-site">Github Repo</a>]
         </div>
         <div className="secondary">
-          If you are one of my developer friends - pull request welcome to make
-          this site look nicer! I ran out of time to make this website nice
-          before heading out to trail :)
+          If you are one of my developer friends - pull requests to make this
+          site look nicer are very, very welcome! I ran out of time to make this
+          website nice before heading out to trail :)
+        </div>
+
+        <div className="secondary">
+          It'd be very nice to show the{" "}
+          <a href="https://www.pcta.org/discover-the-trail/maps/digital-mapping-and-gis-data/">
+            PCT trail itself
+          </a>{" "}
+          on the map but I didn't have time to figure out how...
         </div>
       </footer>
 
@@ -115,7 +149,7 @@ export default function Home() {
           flex-direction: column;
           justify-content: center;
           align-items: center;
-          max-width: 800px;
+          width: 800px;
         }
 
         footer {
@@ -252,10 +286,17 @@ export default function Home() {
           color: gray;
         }
 
-        @media (max-width: 600px) {
-          .grid {
+        .link {
+          cursor: pointer;
+        }
+
+        @media (max-width: 800px) {
+          main {
             width: 100%;
-            flex-direction: column;
+          }
+
+          footer {
+            width: 100%;
           }
         }
       `}</style>
