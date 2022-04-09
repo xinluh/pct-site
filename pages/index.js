@@ -61,9 +61,9 @@ export default function Home() {
                 </div>
               )}
               <b>Updates:</b>
-              {data
+              {data.reverse()
                 .slice(0, numUpdateShown)
-                .reverse()
+
                 .map((d, idx) => (
                   <div key={idx} className="update">
                     <span className="update-time">
