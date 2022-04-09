@@ -8,7 +8,7 @@ const Point = ({ text, isOvernight }) => (
   <div>
     <div className="marker" />
     <div className="text">
-      {text} {isOvernight && "💤"}
+      {isOvernight && `${text} 💤`}
     </div>
     <style jsx>{`
       .marker {
