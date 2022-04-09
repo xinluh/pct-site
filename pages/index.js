@@ -61,7 +61,7 @@ export default function Home() {
                 </div>
               )}
               <b>Updates:</b>
-              {data.reverse()
+              {data.slice().reverse()
                 .slice(0, numUpdateShown)
 
                 .map((d, idx) => (
