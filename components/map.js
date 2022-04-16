@@ -3,10 +3,12 @@ import GoogleMapReact from "google-map-react";
 import { useGarminLogData } from "../lib/data";
 import ReactTooltip from "react-tooltip";
 import { format } from "date-fns";
+import { useRouter } from 'next/router';
 
-const Point = ({ text, isOvernight }) => (
-  <div>
-    <div className="marker" />
+const Point = ({ text, isOvernight, lat, lng }) => {
+  const router = useRouter();
+  return (<div>
+    <div className="marker" onClick={() => router.push(`https://maps.google.com/?q=${lat},${lng}`)}/>
     <div className="text">
       {isOvernight && `${text} 💤`}
     </div>
@@ -34,8 +36,8 @@ const Point = ({ text, isOvernight }) => (
         background: #ffffffad;
       }
     `}</style>
-  </div>
-);
+  </div>);
+}
 
 function handleApiLoaded(map, maps) {
   const kmzLayer = new google.maps.KmlLayer("/stelprdb5332130.kmz");
