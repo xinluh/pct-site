@@ -70,6 +70,8 @@ export default function Home() {
                       {formatRelative(d.timestamp, new Date())}
                     </span>{" "}
                     <span>{d.message}</span>
+                    <span>{d.comment ? ` (${d.comment})` : ''}</span>
+                    <span>{d.mile && !d.comment ? ` (mile ${d.mile})` : ''}</span>
                   </div>
                 ))}
 
