@@ -31,7 +31,7 @@ const Point = ({ text, isOvernight, lat, lng }) => {
       }
 
       .text {
-        width: 50px;
+        width: 36px;
         margin-left: 10px;
         background: #ffffffad;
       }
