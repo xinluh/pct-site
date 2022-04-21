@@ -10,7 +10,7 @@ const Point = ({ text, isOvernight, lat, lng }) => {
   return (<div>
     <div className="marker" onClick={() => router.push(`https://maps.google.com/?q=${lat},${lng}`)}/>
     <div className="text">
-      {isOvernight && `${text} 💤`}
+      {isOvernight && text}
     </div>
     <style jsx>{`
       .marker {
@@ -48,7 +48,7 @@ export function GoogleMap({ data }) {
   console.log(data);
   data = data.filter((d) => d.lat && d.lng);
   const center = data[data.length - 1];
-  const defaultZoom = 12;
+  const defaultZoom = 10;
 
   return (
     <div style={{ height: "400px", width: "100%" }}>
