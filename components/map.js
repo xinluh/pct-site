@@ -51,7 +51,7 @@ let previousTime, startTime;
 let previousAnimationPathIndex = 0;
 let animationPathLength;
 let path;
-let lastMapBoundChange;
+let lastMapZoomChange;
 let currentLocation;
 
 // i wanted to smoothly zoom throughout the animation but google already animating zooming and together
@@ -148,17 +148,31 @@ const animate = () => {
 
     for (const geometry of feature.geometry.geometries) {
       for (const [lng, lat] of geometry.coordinates) {
+        const point = new maps.LatLng(lat, lng);
+
         if (index > previousAnimationPathIndex) {
-          const point = new maps.LatLng(lat, lng);
-          map.setCenter(point);
-          xinluMarker.setPosition(point);
           path.push(point);
         }
 
         index++;
 
+        // check if we've reached final point for this frame of animation, exit loop early if so, after moving map
         if (index >= currentAnimationPathIndex) {
           previousAnimationPathIndex = currentAnimationPathIndex;
+
+          xinluMarker.setPosition(point);
+
+          // if you don't like the zoom effect, replace this if/elseif block with just: map.setCenter(point);
+          if (!lastMapZoomChange || (currentTime - lastMapZoomChange) > 100) {
+            map.setCenter(point);
+            map.setZoom((elapsedProportion * (endZoom - startZoom)) + startZoom);
+            lastMapZoomChange = currentTime;
+
+            // important that we don't move the center while the zoom animation (which can't be disabled) is running
+          } else if ((currentTime - lastMapZoomChange) > 100) {
+            map.setCenter(point);
+          }
+
           return;
         }
       }
