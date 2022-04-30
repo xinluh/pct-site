@@ -13,6 +13,8 @@
     "react": "17.0.2",
     "react-dom": "17.0.2",
     "react-tooltip": "^4.2.21",
-    "styled-jsx": "^5.0.2"
+    "styled-jsx": "^5.0.2",
+    "togeojson": "^0.16.0",
+    "unzipit": "^1.4.0"
   }
 }
