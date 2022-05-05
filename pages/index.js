@@ -42,7 +42,7 @@ export default function Home() {
             <GoogleMap data={data} />
 
             <div className="update-container">
-              {differenceInHours(new Date(), lastDataPoint.timestamp) > 48 && (
+              {differenceInHours(new Date(), lastDataPoint.timestamp) > 36 && (
                 <div className="update-notice">
                   <div>
                     Don't see a recent update here? <b>Don't worry!</b> Mostly
@@ -101,7 +101,8 @@ export default function Home() {
                     location breadcrumb for logging purpose. I get a message on
                     my email which is then parsed by Google App Script in to a
                     Google Sheet; this page just shows the information from
-                    sheet in a nice way.
+                    sheet in a nice way. When I have internet, I usually go back
+                    and add some additional comments or annotations.
                   </div>
 
                   <div>
@@ -125,14 +126,7 @@ export default function Home() {
           site look nicer are very, very welcome! I ran out of time to make this
           website nice before heading out to trail :)
         </div>
-
-        <div className="secondary">
-          It'd be very nice to show the{" "}
-          <a href="https://www.pcta.org/discover-the-trail/maps/digital-mapping-and-gis-data/">
-            PCT trail itself
-          </a>{" "}
-          on the map but I didn't have time to figure out how...
-        </div>
+        <div className="secondary">(Thanks Hamza for adding the trail on the map!)</div>
       </footer>
 
       <style jsx>{`
