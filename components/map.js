@@ -58,8 +58,8 @@ let currentLocation;
 
 // i wanted to smoothly zoom throughout the animation but google already animating zooming and together
 // the animation completely freeze the browser, so i only zoom at the end :'(
-const startZoom = 7;
-const endZoom = 10;
+const startZoom = 6;
+const endZoom = 9;
 
 const calculateAnimationPathLength = () => {
   currentLocation = garminData[garminData.length - 1];
