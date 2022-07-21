@@ -111,6 +111,7 @@ export default function Home() {
                   </div>
                 </>
               )}
+            <iframe width="100%" height="456" seamless frameborder="0" scrolling="yes" src="https://docs.google.com/spreadsheets/d/e/2PACX-1vTxhGwV9RIU7RJpPwnvBsMNOfE9Y6QhYuCLfLys07ZEG2odsSTk3ScwILW1SQkIl6CHzJcz5yf1SB4o/pubchart?oid=1577008231&amp;format=interactive"></iframe>
             </div>
           </>
         )}
