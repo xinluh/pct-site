@@ -18,10 +18,10 @@ const Point = ({ text, isOvernight, lat, lng, isCurrentLocation }) => {
         position: absolute;
         top: 50%;
         left: 50%;
-        width: ${isOvernight ? "18px" : "12px"};
-        height: ${isOvernight ? "18px" : "12px"};
+        width: ${isOvernight ? "10px" : "6px"};
+        height: ${isOvernight ? "10px" : "6px"};
         background-color: ${isOvernight ? "#c000ff" : "#008aff"};
-        border: 2px solid #fff;
+        border: 1px solid #fff;
         border-radius: 100%;
         user-select: none;
         cursor: pointer;
@@ -33,8 +33,10 @@ const Point = ({ text, isOvernight, lat, lng, isCurrentLocation }) => {
       }
 
       .text {
-        width: 36px;
-        margin-left: 10px;
+        font-size: 8px;
+        width: 25px;
+        margin-left: 7px;
+        margin-top: -5px;
         background: #ffffffad;
       }
     `}</style>
